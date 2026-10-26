@@ -21,3 +21,5 @@ yarn-error.log*
 .vscode/
 .idea/
 .DS_Store
+/functions/lib
+/functions/node_modules
