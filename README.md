@@ -1,6 +1,6 @@
 # Descomplex — Procrastinação
 
-Aplicação React, TypeScript e Firebase para entender padrões de procrastinação e converter tarefas em primeiros passos concretos. O ZIP original foi preservado no repositório; o código-fonte desta versão está em `src/`.
+Aplicação React, TypeScript e Firebase para entender padrões de procrastinação e converter tarefas em primeiros passos concretos. O código-fonte está em `src/`. O arquivo `descomplex-mvp-corrigido.zip` contém esta mesma versão, com código-fonte, função de notificações e build gerado.
 
 ## Executar
 
