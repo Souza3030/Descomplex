@@ -8,10 +8,25 @@ Aplicação React, TypeScript e Firebase para entender padrões de procrastinaç
 2. Copie `.env.example` para `.env` e preencha os valores da configuração Web do **seu** projeto Firebase. Esses identificadores Web não são senhas; não inclua chaves administrativas.
 3. No Firebase Console, habilite **Authentication** com e-mail/senha e, se desejar, Google. Adicione o domínio do aplicativo à lista de domínios autorizados.
 4. Crie o **Cloud Firestore**. Para notificações diárias, ative **Cloud Messaging**, gere uma chave Web Push (VAPID) e preencha `VITE_FIREBASE_VAPID_KEY`. O navegador precisa de HTTPS ou `localhost` e o usuário deve autorizar notificações. A função agendada usa Cloud Functions e Cloud Scheduler, que podem exigir faturamento no Firebase.
-5. Revise as regras e publique regras, função e hospedagem com `npm run build` e `npx firebase-tools deploy --only firestore:rules,functions,hosting --project SEU_PROJECT_ID`. É necessário estar autenticado no Firebase CLI e ter permissão para publicar no projeto. A configuração de Hosting inclui as rotas `/tarefas`, `/diagnostico`, `/foco` e `/perfil`.
+5. Revise as regras e publique regras, função e hospedagem. Primeiro execute `npx firebase-tools login` e confirme que seu projeto aparece em `npx firebase-tools projects:list`. Depois rode `npm run build` e `npx firebase-tools deploy --only "hosting,functions,firestore:rules" --project SEU_PROJECT_ID`. A conta Google usada no login precisa ter permissão de publicação no projeto. A configuração de Hosting inclui as rotas `/tarefas`, `/diagnostico`, `/foco` e `/perfil`.
 6. Execute `npm run dev`. Para conferir as compilações, execute `npm run build` na raiz e `npm --prefix functions run build`.
 
 Sem a configuração Firebase, o aplicativo mostra uma tela de configuração. As tarefas e os diagnósticos são gravados em `users/{uid}/tasks` e `users/{uid}/diagnoses`. A sessão de foco usa um temporizador local.
+
+### Se você baixou o ZIP no Windows
+
+Abra o PowerShell na pasta extraída que contém `package.json` e execute:
+
+```powershell
+npm ci
+npm --prefix functions ci
+npm run build
+npx firebase-tools login
+npx firebase-tools projects:list
+npx firebase-tools deploy --only "hosting,functions,firestore:rules" --project SEU_PROJECT_ID
+```
+
+O ZIP extraído não contém `.git`: `git add`, `git commit` e `git push` só funcionam em um clone feito com `git clone`. As alterações do projeto já estão no repositório; você não precisa enviar o ZIP de volta. Avisos de `npm audit` e de tamanho do bundle não impedem a publicação, mas devem ser avaliados separadamente antes de atualizar dependências.
 
 ## Como usar
 
