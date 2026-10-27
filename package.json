@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy:site": "npm run build && npx firebase-tools deploy --only hosting,firestore:rules --project descomplex-b54c4"
   },
   "dependencies": {
     "firebase": "^10.8.0",
